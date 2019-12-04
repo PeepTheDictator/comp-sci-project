@@ -1,0 +1,98 @@
+conf = "n"
+select = ""
+mode = 1
+dev = 0
+god = 0
+while conf == "n":
+    print("\n\n\n\nwelcome to the menu, please choose one of the following")
+    menu = input("settings \nextras \nplay \nhelp \n")
+ 
+    #settings menu
+    while "settings" in menu:
+        print("Welcome to settings, Please choose on of the follwing, or type back\n")
+        print("Diffuculty: easy---medium---hard---very hard")
+        print("God Mode: on---off")
+        print("Dev mode: on---off")
+        settings = input(" ")
+        mode = 1
+        god = 0
+ 
+        #difficulty selections
+        while "difficulty" in settings:
+            select = input("plesae select a difficulty or type 'back'\neasy \nmedium \nhard \n")
+            if "easy":
+                mode = 1
+                break
+            select = ""
+            if "medium":
+                mode = 2
+                break
+            select = ""
+            if "hard":
+                mode = 3
+                break
+            if "very hard": 
+                mode = 4
+                break
+            select = ""
+        if "back" in settings:
+            break
+        
+        if "god" in settings:
+            print("god mode will make you unkillable, meaning you have an infinite (almost) amount of HP")
+            god = input("Please input \non(1) \noff(0) \n")
+            
+        if "dev" in settings:
+            print("this will grant you an unlimited amount of points, this is intended for the testing of extremes, beware, there may be bugs and/or crashes if abused")
+            dev = input("Please input \non(1) \noff(0) \n")
+            
+ 
+ 
+ 
+    #special settings menu
+    while "extras" in menu:
+        print("Welcome, here you can choose some different modes to add spice to the game, please choose one of the following")
+        special = input("\nGod Slayer: \nLast Stand: \nDemi God \nRealism \nBack \n")
+        gs = 0
+        ls = 0
+        dg = 0
+        real = 0
+ 
+        if "back" in special:
+            break
+            
+        if "god" in special or "god slayer" in special:
+            print("please choose one of the following")
+            gs = input("on(1) \noff(0)\n")
+            continue
+ 
+        if "last" in special or "last stand" in special:
+            print("please choose one of the following")
+            ls = input("on(1) \noff(0)\n")
+            continue
+ 
+        if "demi" in special or "demi god" in special:
+            print("please choose one of the following")
+            dg = input("on(1) \noff(0)\n")
+            continue
+ 
+        if "real" in special or "realism" in special:
+            print("please choose one of the following")
+            real = input("on(1) \noff(0)\n")
+            continue
+ 
+ 
+    #basically just a help tab
+    if menu == "help":
+        print("Hello and welcome to Battle sim, You will play by typing a specific command into the console to preform the corresponding action")
+        print("You will be taking the role of an adventurer, who will be taking on a variety of monsters there will be a variety of diffrent situations that you may encounter. you will input any of the displayed options in order to select your action and continue ")
+        input("please press enter once finished")
+ 
+ 
+    while menu == "play":
+        conf = input("are you are ready to play? \n(y/n)\n")
+        if "y" in conf:
+            break
+        if "n" in conf:
+            break
+ 
