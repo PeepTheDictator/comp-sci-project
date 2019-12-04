@@ -1,0 +1,379 @@
+point = 0
+ 
+str = 10
+dex = 10
+int = 10
+ht = 10
+ 
+hp = 10
+will = 10
+per = 10
+fp = 10
+ 
+ 
+#this is going to be the crazy section of the code where I plan to put every advantage, disadvantage, and put a innate attack builder
+ 
+adv = (
+  "360 Vision",
+  "Absolute Direction",
+  "Absolute Timing",
+  "Acute Senses",
+  "Affiction",
+  "Altered Time Rate",
+  "Alternate Identity",
+  "Amidexterity",
+  "Amphibious",
+  "Animal Empathy",
+  "Arm DX",
+  "Arm STR",
+  "Binding",
+  "Blessed",
+  "Brachiator",
+  "Breath-Holding",
+  "Catfall",
+  "Chameleon",
+  "Channeling",
+  "Charisma",
+  "Clairsentience",
+  "Claws",
+  "Cleriacl Invsetment",
+  "Clinging",
+  "Combat Reflexes",
+  "Common Sense",
+  "Compartmentalized Mind",
+  "Constriction Attack",
+  "Contact Group",
+  "Contacts",
+  "Cultural Adaptivity",
+  "Cybernetics",
+  "Damage Resistance",
+  "Danger Sense",
+  "Daredevil",
+  "Dark Vision",
+  "Destiny",
+  "Detect",
+  "Digital Mind",
+  "Disciminatory Hearing",
+  "Discrimitory Smell",
+  "Discrimitory Smell",
+  "Dosen't Breathe",
+  "Dosen't Sleep",
+  "Dominance",
+  "Duplication",
+  "Eidectic Memory",
+  "Elastic Skin",
+  "Enhanced Defences",
+  "Enhanced Move",
+  "Enhanced Time Sense",
+  "Enhanced Tracking",
+  "Extended Lifespan",
+  "Extra Arms",
+  "Extra Attack",
+  "Extra Head",
+  "Extra Head",
+  "Extra Legs",
+  "Extra Life",
+  "Extra Mouth",
+  "Favor",
+  "Fearlessness",
+  "Filter Lungs",
+  "Fit",
+  "Flexability",
+  "Flight",
+  "Gadgeteer",
+  "Gizmos",
+  "G-Experience",
+  "Growth",
+  "Gunslinger",
+  "Hard to Kill",
+  "Hard to Subdue",
+  "Healing",
+  "Hermaphromorph",
+  "High Pain Threshold",
+  "Higher Purpose",
+  "Hyperspectral Vision",
+  "Illuminated",
+  "Improved G-Tolerance",
+  "Indomitable",
+  "Infravion",
+  "Injury Tolerance",
+  "Insubstantiality",
+  "Intuition",
+  "Invisibility",
+  "Jumper",
+  "Language Talent",
+  "Leagle Enforcement Powers",
+  "Legal Immunity",
+  "Less Sleep",
+  "Lifting ST",
+  "Lightning Calculator",
+  "Longevity",
+  "Luck",
+  "Magery",
+  "Magic Resistace",
+  "Mana Damper",
+  "Mana Enhancer",
+  "Medium",
+  "Metabolism",
+  "Microscopic Vision",
+  "Mimicry",
+  "Mind Control",
+  "Mind Probe",
+  "Mind Reading",
+  "Mind Shield",
+  "Mindlink",
+  "Modular Abilities",
+  "Neutralize",
+  "Nictitating Membrane",
+  "Night Vision",
+  "Obscure",
+  "Oracle",
+  "Parapolic Hearing",
+  "Payload",
+  "Penetrating Vision",
+  "Perfect Balance",
+  "Peripheral Vision",
+  "Permeation",
+  "Plant Empathy",
+  "Possession",
+  "Power Investiture",
+  "Precognition",
+  "Pressure Support",
+  "Protected Sense",
+  "Psi Static",
+  "Psycometry",
+  "Racial Memory",
+  "Radiation Tolerance",
+  "Rapid Healing",
+  "Rapier Wit",
+  "Reawakened",
+  "Recovery",
+  "Reduced Consumption",
+  "Regeneration",
+  "Regrowth",
+  "Reputation"
+  "Resistant",
+  "Scanning Sense",
+  "Sealed",
+  "Security Clearance",
+  "See Invisible",
+  "Sensitive",
+  "Sensitive Touch",
+  "Serindipity",
+  "Shadow Form",
+  "Shrinking",
+  "Silence",
+  "Single-Minded",
+  "Slippery",
+  "Snatcher",
+  "Socail Chameleon",
+  "Social Regard",
+  "Speak Underwater",
+  "Speak With Animals",
+  "Speak With Plants",
+  "Spines",
+  "Spirit Empathy",
+  "Streching",
+  "Striker",
+  "Striking ST",
+  "Subsonic Hearing",
+  "Subsonic Speach",
+  "Super Climbing",
+  "Super Jump",
+  "Super Luck",
+  "Supernatural Durability",
+  "Teeth",
+  "Telecommunication",
+  "Telekinesis",
+  "Telescopic Vision",
+  "Temperature Control",
+  "Temperature Tolerance",
+  "Temporal Inertia",
+  "Terrain Adaption",
+  "Terror",
+  "Trained By A Master",
+  "True Faith",
+  "Tunneling",
+  "Ultrahearing",
+  "Ultrasoinc Speach",
+  "Ultravision",
+  "Unaging",
+  "Unfazable",
+  "Universal Digestion",
+  "Unkillable",
+  "Unusual Background",
+  "Vacuum Support",
+  "Vapiric Bite",
+  "Versatile",
+  "Vibration Sense",
+  "Visualization",
+  "Voice",
+  "Walk on Air",
+  "Walk on Liquid",
+  "Warp",
+  "Wealth",
+  "Wild Talent",
+  "Zeroed",
+)
+ 
+ 
+def adv:
+ 
+ 
+conf = "n"
+ 
+menu_select = ""
+adv_select = ""
+adv_conf = ""
+enhance = ""
+limit = ""
+points = 0
+ 
+if mode == 1:
+    points = 350
+if mode == 2:
+    points = 300
+if mode == 3:
+    points = 275
+if mode == 4:
+    points = 175
+ 
+owned = {""}
+while conf == "n":
+    print("Welcome to the character creator, this is where you will create the character you will go into battle with!")
+ 
+    print("For future reference, anything that has nothing to do with points, might not show up in the character creator")
+    
+    if dev == 1:
+        points = 9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
+    
+    menu_select = input("""
+    Please input one of the following, or look in the GURPS handbook for some advantages
+ 
+    -STR                    -HP    %hp
+    -DEX    %dex                -WILL  %will
+    -INT    %int                -PER   %per
+    -HT     %ht                 -FP    %fp
+ 
+    -Advantages
+    -Owned Advantages
+    -Disadvantages
+    -Owned Disadvantages
+    -Innate Attack Builder
+    -Ally Builder
+    -Affliction 
+    -Skills 
+    -Patron Builder(basically just different ally builder)
+    -Puppet
+    -Shapeshifting and Alternate Form Stuff
+    -Signature Gear stuff
+    -Special Rapport (use it to choose who and to buy as an ally)
+    -Talents
+    -Tenure (Backstory addon)
+    -Weapon Master
+    (all of the previous builders will have selectable presets)\n""")
+    
+    #this is going to be the grueling adv select thing
+    while menu_select == "adv" or menu_select == "advantages":
+        print(adv)
+        adv_select = input("please type one of the previous or back\n")
+        while "360 vison" in adv_select or "360" in adv_select:
+            print("""
+            You have a 360° field of vision. You
+            have no penalty to defend against
+            attacks from the sides or rear. You can
+            attack foes to your sides or rear without making a Wild Swing, but you are
+            at -2 to hit due to the clumsy angle of
+            attack (note that some Karate techniques do not suffer this penalty).
+            Finally, you are at +5 to detect
+            Shadowing attempts, and are never
+            surprised by a danger that comes from
+            behind, unless it also is concealed
+            from sight.
+            Extra eyes are merely a special
+            effect of this trait – you can have any
+            number of eyes, but the point cost
+            remains the same.
+ 
+ 
+            New Special Enhancements
+            
+            (1)Panoptic 1: You can see all around
+            you without turning your head and
+            without the need for extra eyes. This is
+            an enhancement because your gift
+            isn’t obvious – you can visibly stare in
+            one direction and actually be looking
+            in another! You still need eyes,
+            though. If you’re blindfolded, dazzled,
+            blinded by injuries, etc., you cannot
+            see. +20%.
+            
+            (2)Panoptic 2: As above, but you don’t
+            need eyes. You can always perceive
+            everything going on around you, even
+            if blinded or blindfolded. You still
+            need light, unless you have something
+            like Dark Vision. Blows to the eyes
+            injure you normally but won’t blind
+            this sense. +60%.
+            """)
+ 
+        if "back" in adv_select:
+            adv_select = ""
+            break
+#this is going to be cookie cutter for the others
+            enhance = input("please pick one of the following enhancements, or type none\n")
+            if enhance == "1":
+                if "360 Vison" in owned:
+                    print("you already own this")
+                    break
+ 
+                if points < 30:
+                    print("you cannot afford this")
+                    break
+                
+ 
+                if points >= 30:
+                    adv_conf = input("are you sure you would like to get this? \n(y/n) \n")
+                    if adv_conf == "y":
+                        points -= 30
+                        owned.add("360 Vison (Panoptic) 1")
+                        print("you have purchased this Advantage")
+                        break
+ 
+            if enhance == "2":
+                if "360 Vison" in owned:
+                    print("you already own this")
+                    break
+ 
+                if points < 40:
+                    print("you cannot afford this")
+                    break
+                
+ 
+                if points >= 40:
+                    adv_conf = input("are you sure you would like to get this? \n(y/n) \n")
+                    if adv_conf == "y":
+                        points -= 40
+                        owned.add("360 Vison (Panoptic) 2")
+                        print("you have purchased this Advantage")
+                        break
+            
+            if enhance == "none":
+                if "360 Vison" in owned:
+                    print("you already own this")
+                    break
+ 
+                if points < 25:
+                    print("you cannot afford this")
+                    break
+                
+ 
+                if points >= 25:
+                    adv_conf = input("are you sure you would like to get this? \n(y/n) \n")
+                    if adv_conf == "y":
+                        points -= 25
+                        owned.add("360 Vison")
+                        print("you have purchased this Advantage")
+                        break
