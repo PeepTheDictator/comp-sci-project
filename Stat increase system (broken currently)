@@ -1,0 +1,66 @@
+points = 200
+pc_str = 10
+pc_hp = 10
+pc_dex =  10
+pc_will = 10
+pc_int = 10
+pc_per = 10
+pc_ht = 10
+pc_fp = 10
+conf = "n"
+
+select = None
+
+choice = None
+increase = None
+
+stat = None
+stat_score = 0
+
+def point_calc(stat,increase):
+    if stat == "str":
+        stat_score = pc_str * 10 - 100
+        
+        if points < increase * stat_score:
+            return print("you cannont afford this")
+        if points >= increase * stat_score:     
+            if increase <= 0:
+                return("test 1")
+                return print("you cannot increase a stat by 0 or lower")
+                if increase > 0:
+                    return print("test")
+
+    if stat == "hp":
+        stat_score = pc_hp * 10 - 20
+    if stat == "dex":
+        stat_score = pc_dex * 20 - 200
+    if stat == "will":
+        stat_score = pc_will * 5 - 50
+    if stat == "int":
+        stat_score = pc_int * 10 - 100
+    if stat == "per":
+        stat_score = pc_per * 5 - 50
+    if stat == "ht":
+        stat_score = pc_ht * 10 - 100
+    if stat == "fp":
+        stat_score = pc_fp * 3 - 30                            
+    else:
+        ("invalid")
+    
+
+
+
+while conf != "y":
+
+    print("STR:",pc_str,"[",pc_str * 10 - 100,"]           HP:",pc_hp,"[",pc_hp * 2 - 20,"]")
+    print("DEX:",pc_dex,"[",pc_dex * 20 - 200,"]           WILL:",pc_will,"[",pc_will * 5 - 50,"]")
+    print("INT:",pc_int,"[",pc_int * 10 - 100,"]           PER:",pc_per,"[",pc_per * 5 - 50,"]")
+    print("HT:",pc_ht," [",pc_ht * 10 - 100,"]           FP:",pc_fp,"[",pc_fp * 3 - 30,"]")
+    print("Current Points:",points)
+    print("Statscore status",stat_score)
+    select = input("what would you like to edit?")
+    if select == "stats":
+        stat = input("please insert a stat to upgrade, or optimize your skill to stat ratio with (auto)")
+        increase = int(input("what would you like to increase this stat by?"))
+        point_calc(stat,increase)
+        select == None
