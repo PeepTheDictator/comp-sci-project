@@ -29,10 +29,10 @@ while conf != "y":
     print("Current Points:",points)
     print("Statscore status",score)
 
-    select = input("what would you like to edit?")
+    select = input("what would you like to edit?\n")
     if select == "stat" or select == "stats":
-        stat = input("please insert a stat to upgrade, or optimize your skill to stat ratio with (auto)")
-        inc = int(input("what would you like to increase this stat by?"))
+        stat = input("please insert a stat to upgrade, or optimize your skill to stat ratio with (auto)\n")
+        inc = int(input("what would you like to increase this stat by?\n"))
         if stat == "str":
             score = pc_str * 10 - 100
         if stat == "hp":
