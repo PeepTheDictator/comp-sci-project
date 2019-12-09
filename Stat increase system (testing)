@@ -57,41 +57,65 @@ while conf != "y":
                 print("you cannot increase a stat by 0 or lower")
             if inc > 0:
                 if stat == "str":
-                    pc_str += inc
-                    points -= inc * 10
+                    if inc * 10 > points:
+                        print("you cannot afford this")
+                    else:
+                        pc_str += inc
+                        points -= inc * 10
                 select == None
 
                 if stat == "hp":
-                    pc_hp += inc
-                    points -= inc * 2
+                    if inc * 2 > points:
+                        print("you cannot afford this")
+                    else:
+                        pc_hp += inc
+                        points -= inc * 2
                 select == None
 
                 if stat == "dex":
-                    pc_dex += inc
-                    points -= inc * 20
+                    if inc * 20 > points:
+                        print("you cannot afford this")
+                    else:
+                        pc_dex += inc
+                        points -= inc * 20
                 select == None
 
                 if stat == "will":
-                    pc_will += inc
-                    points -= inc * 5
+                    if inc * 5 > points:
+                        print("you cannot afford this")
+                    else:
+                        pc_will += inc
+                        points -= inc * 5
                 select == None
 
                 if stat == "int":
-                    pc_int += inc
-                    points -= inc * 10
+                    if inc * 10 > points:
+                        print("you cannot afford this")
+                    else:
+                        pc_int += inc
+                        points -= inc * 10
                 select == None
 
                 if stat == "per":
-                    pc_per += inc
-                    points -= inc * 5
+                    if inc * 5 > points:
+                        print("you cannot afford this")
+                    else:
+                        pc_per += inc
+                        points -= inc * 5
                 select == None
 
                 if stat == "ht":
-                    pc_ht += inc
-                    points -= inc * 10
+                    if inc * 10 > points:
+                        print("you cannot afford this")
+                    else:
+                        pc_ht += inc
+                        points -= inc * 10
                 select == None
 
                 if stat == "fp":
-                    pc_fp += inc
-                    points -= inc * 3
+                    if inc * 3 > points:
+                        print("you cannot afford this")
+                    else:
+                        pc_fp += inc
+                        points -= inc * 3
                 select == None
