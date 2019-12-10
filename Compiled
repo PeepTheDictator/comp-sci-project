@@ -1,0 +1,308 @@
+conf = "n"
+select = ""
+mode = 1
+dev = 0
+god = 0
+while conf == "n":
+    print("\n\n\n\nwelcome to the menu, please choose one of the following")
+    menu = input("settings \nextras \nplay \nhelp \n")
+ 
+    #settings menu
+    while "settings" in menu:
+        print("Welcome to settings, Please choose on of the follwing, or type back\n")
+        print("God Mode: on---off")
+        print("Dev mode: on---off")
+        settings = input(" ")
+        mode = 1
+        god = 0
+ 
+        #difficulty selections
+        
+        if "god" in settings:
+            print("god mode will make you unkillable, meaning you have an infinite (almost) amount of HP")
+            god = input("Please input \non(1) \noff(0) \n")
+            
+        if "dev" in settings:
+            print("this will grant you an unlimited amount of points, this is intended for the testing of extremes, beware, there may be bugs and/or crashes if abused")
+            dev = input("Please input \non(1) \noff(0) \n")
+            
+ 
+ 
+ 
+    #special settings menu
+    while "extras" in menu:
+        print("Welcome, here you can choose some different modes to add spice to the game, please choose one of the following")
+        special = input("\nGod Slayer: \nLast Stand: \nDemi God \nRealism \nBack \n")
+        gs = 0
+        ls = 0
+        dg = 0
+        real = 0
+ 
+        if "back" in special:
+            break
+            
+        if "god" in special or "god slayer" in special:
+            print("please choose one of the following")
+            gs = input("on(1) \noff(0)\n")
+            continue
+ 
+        if "last" in special or "last stand" in special:
+            print("please choose one of the following")
+            ls = input("on(1) \noff(0)\n")
+            continue
+ 
+        if "demi" in special or "demi god" in special:
+            print("please choose one of the following")
+            dg = input("on(1) \noff(0)\n")
+            continue
+ 
+        if "real" in special or "realism" in special:
+            print("please choose one of the following")
+            real = input("on(1) \noff(0)\n")
+            continue
+ 
+ 
+    #basically just a help tab
+    if menu == "help":
+        print("Hello and welcome to Battle sim, You will play by typing a specific command into the console to preform the corresponding action")
+        print("You will be taking the role of an adventurer, who will be taking on a variety of monsters there will be a variety of diffrent situations that you may encounter. you will input any of the displayed options in order to select your action and continue ")
+        input("please press enter once finished")
+ 
+ 
+    if menu == "play":
+        conf = input("are you are ready to play? \n(y/n)\n")
+
+mode = 1
+select = None
+points = None
+conf = "n"
+diff = 0
+
+while conf != "y":
+    select = input("what difficulty would you like to choose?\nVery Easy\nEasy\nMedium\nHard\nVery Hard\n")
+    if "very easy" in select:
+        mode = 1
+        points = 400
+        diff = 1
+    if "easy" in select:
+        mode = 2
+        points = 350
+        diff = 2
+    if "medium" in select:
+        mode = 3
+        points = 300
+        diff = 3
+    if "hard" in select:
+        mode = 4
+        points = 250
+        diff = 4
+    if "very hard" in select:
+        mode = 5
+        points = 200
+        diff = 5
+
+    print("DISCLAIMER: if you don't input a valid input, your points will be voided")
+    conf = input("are you sure? (y/n)\n")
+    if conf == "y":
+        print("good luck")
+    else:
+        continue
+
+
+pc_str = 10
+pc_hp = 10
+pc_dex =  10
+pc_will = 10
+pc_int = 10
+pc_per = 10
+pc_ht = 10
+pc_fp = 10
+
+conf = "n"
+
+select = None
+
+choice = None
+inc = None
+
+stat = None
+score = 0
+
+
+#definitions
+pc_adv = []
+advantages={"Altered Time Rate":" Gives an extra turn to attack with. (Cost: 100)",
+            "Cat Fall": "Less damage from falls. (Cost: 20)",
+            "Chameleon": "You blend in with your surroundings better. (Cost: 10)",
+            "Claws": "Strikes with fist deal more damage. (Cost: 20)",
+            "Combat Reflexes": "Gives a chance that an incoming attack will be dodged. (Cost: 25)",
+            "Damage Resistance": "Reduced damage from attacks. (Cost: 5 per lvl)",
+            "Dominance": "Take over an enemy (Cost: 20)",
+            "Duplication": "Split into two copies of yourself, but you keep the same stats. (Cost: 35)",
+            "ExtraAttack": "An extra attack within the turn will be granted. (Cost:  25)",
+            "ExtraLife": "If completely killed you will come back to live with full health. (Cost:  25)",
+            "Flight": "You can fly now. (Cost:  40)",
+            "Gunslinger": "Better accuracy when shooting weapons. (Cost: 25)",
+            "Hard to kill": "It now makes you harder to kill.  (Cost: 2 per lvl)",
+            "Healing": "You can spend 1 fatigue point 1D6.  (Cost: 30)",
+            "Injury Tolerance": "You have a supernatural resistance to damage",
+            "Homogeneous": "You have resistance to piercing, slashing, and budgening damage",
+            "Invisibility": "You gain a +15 to stealth checks",
+            "Magic Resistance": "You gain resistance to damage (Cost: 2 per lvl)",
+            "Mind Control": "What it sounds like (Cost: 50 points)",
+            "Mind Sheild": "You have a resistance to psychic effects (Cost: 4 per lvl)"}
+#points per adv
+adv_points= {"Altered Time Rate": 100,
+                "Cat Fall": 20,
+                "Chameleon": 10,
+                "Claws":20,
+                "Combat Reflexes": 25,
+                "Damage Resistance":5,
+                "Dominance": 20,
+                "Duplication": 35,
+                "ExtraAttack": 25,
+                "ExtraLife": 25,
+                "Flight": 40,
+                "Gunslinger": 25,
+                "Hard to kill": 2,
+                "Healing": 30,
+                "Injury Tolerance": 5,
+                "Homogeneous": 20,
+                "Invisibility": 13,
+                "Magic Resistance": 2,
+                "Mind Control": 50,
+                "Mind Sheild": 4}
+
+
+while conf != "y":
+
+    print("STR:",pc_str,"[",pc_str * 10 - 100,"]           HP:",pc_hp,"[",pc_hp * 2 - 20,"]")
+    print("DEX:",pc_dex,"[",pc_dex * 20 - 200,"]           WILL:",pc_will,"[",pc_will * 5 - 50,"]")
+    print("INT:",pc_int,"[",pc_int * 10 - 100,"]           PER:",pc_per,"[",pc_per * 5 - 50,"]")
+    print("HT:",pc_ht," [",pc_ht * 10 - 100,"]           FP:",pc_fp,"[",pc_fp * 3 - 30,"]")
+    print("Current Points:",points)
+    print("Statscore status",score)
+    print("Owned adv", pc_adv)
+    print("Stats\nAdvantages (adv)\n")
+
+    select = input("what would you like to edit?\n")
+    if select == "stat" or select == "stats":
+        stat = input("please insert a stat to upgrade, or optimize your skill to stat ratio with (auto)\n")
+        inc = int(input("what would you like to increase this stat by?\n"))
+        if stat == "str":
+            score = pc_str * 10 - 100
+        if stat == "hp":
+            score = pc_hp * 10 - 20
+        if stat == "dex":
+            score = pc_dex * 20 - 200
+        if stat == "will":
+            score = pc_will * 5 - 50
+        if stat == "int":
+            score = pc_int * 10 - 100
+        if stat == "per":
+            score = pc_per * 5 - 50
+        if stat == "ht":
+            score = pc_ht * 10 - 100
+        if stat == "fp":
+            score = pc_fp * 3 - 30                            
+        else:
+            ("invalid")
+
+        if points > inc * score:
+            if inc <= 0:
+                print("you cannot increase a stat by 0 or lower")
+            if inc > 0:
+                if stat == "str":
+                    if inc * 10 > points:
+                        print("you cannot afford this")
+                    else:
+                        pc_str += inc
+                        points -= inc * 10
+                select == None
+
+                if stat == "hp":
+                    if inc * 2 > points:
+                        print("you cannot afford this")
+                    else:
+                        pc_hp += inc
+                        points -= inc * 2
+                select == None
+
+                if stat == "dex":
+                    if inc * 20 > points:
+                        print("you cannot afford this")
+                    else:
+                        pc_dex += inc
+                        points -= inc * 20
+                select == None
+
+                if stat == "will":
+                    if inc * 5 > points:
+                        print("you cannot afford this")
+                    else:
+                        pc_will += inc
+                        points -= inc * 5
+                select == None
+
+                if stat == "int":
+                    if inc * 10 > points:
+                        print("you cannot afford this")
+                    else:
+                        pc_int += inc
+                        points -= inc * 10
+                select == None
+
+                if stat == "per":
+                    if inc * 5 > points:
+                        print("you cannot afford this")
+                    else:
+                        pc_per += inc
+                        points -= inc * 5
+                select == None
+
+                if stat == "ht":
+                    if inc * 10 > points:
+                        print("you cannot afford this")
+                    else:
+                        pc_ht += inc
+                        points -= inc * 10
+                select == None
+
+                if stat == "fp":
+                    if inc * 3 > points:
+                        print("you cannot afford this")
+                    else:
+                        pc_fp += inc
+                        points -= inc * 3
+                select == None
+
+    #testing for selection
+    if "adv" in select:
+    #print out list
+        print(advantages.keys())
+        print("")
+                 
+        while points>=1:
+            print("points=",points)
+            #ask
+            ask= input("\nWhat advantages do you want?, or type back to leave this menu. \n")
+            if ask == "back":
+                break
+
+            if ask in advantages:
+                p=advantages[ask]
+                print(ask,":",p)
+                #vairify
+                ah= input("Are you sure you want to use this? \n")
+                if ah == "yes"or"Yes":
+                    o=adv_points[ask]
+                    points-=o
+                    pc_adv + ask
+                    print(points)
+                elif ah== 'no'or'No':
+                    continue
+                
+            else:
+                print("That is not in the Advantages List\n\n")
+           
+           
