@@ -136,11 +136,11 @@ advantages={"Altered Time Rate":" Gives an extra turn to attack with. (Cost: 100
             "Chameleon": "You blend in with your surroundings better. (Cost: 10)",
             "Claws": "Strikes with fist deal more damage. (Cost: 20)",
             "Combat Reflexes": "Gives a chance that an incoming attack will be dodged. (Cost: 25)",
-            "Damage Resistance": "Reduced damage from attacks. (Cost: 5 per lvl)",
+            "Damage Resistance": "Reduced damage from attacks. (Cost: 5)",
             "Dominance": "Take over an enemy (Cost: 20)",
             "Duplication": "Split into two copies of yourself, but you keep the same stats. (Cost: 35)",
-            "ExtraAttack": "An extra attack within the turn will be granted. (Cost:  25)",
-            "ExtraLife": "If completely killed you will come back to live with full health. (Cost:  25)",
+            "Extra Attack": "An extra attack within the turn will be granted. (Cost:  25)",
+            "Extra Life": "If completely killed you will come back to live with full health. (Cost:  25)",
             "Flight": "You can fly now. (Cost:  40)",
             "Gunslinger": "Better accuracy when shooting weapons. (Cost: 25)",
             "Hard to kill": "It now makes you harder to kill.  (Cost: 2 per lvl)",
@@ -157,10 +157,10 @@ adv_points= {"Altered Time Rate": 100,
                 "Chameleon": 10,
                 "Claws":20,
                 "Combat Reflexes": 25,
-                "Damage Resistance":5,
+                "Damage Resistance": 5,
                 "Dominance": 20,
                 "Duplication": 35,
-                "ExtraAttack": 25,
+                "Extra Attack": 25,
                 "ExtraLife": 25,
                 "Flight": 40,
                 "Gunslinger": 25,
@@ -288,19 +288,36 @@ while conf != "y":
             ask= input("\nWhat advantages do you want?, or type back to leave this menu. \n")
             if ask == "back":
                 break
+            
 
+            
+                
             if ask in advantages:
                 p=advantages[ask]
                 print(ask,":",p)
                 #vairify
                 ah= input("Are you sure you want to use this? \n")
                 if ah == "yes"or"Yes":
-                    o=adv_points[ask]
-                    points-=o
-                    pc_adv + ask
-                    print(points)
-                elif ah== 'no'or'No':
-                    continue
+                    if ask == "Damage Resistance" or "Altered Time Rate" or "Magic Resistance" or "Extra Attack" or "Extra Life" or "Chameleon" or "Duplication" or "Mind Sheild" or "Hard to Kill":
+                        print("what level of this would you like to buy? (costs the ammount per level)")
+                        o =adv_points[ask]
+                        points-= o
+                        pc_adv.append(ask)
+                        print(points)
+                    elif ah== 'no'or'No':
+                        continue
+                
+                    else:
+                        if ask in pc_adv:
+                            print("you cannot buy them same advantage more than once")
+                            break
+                        else:
+                            o =adv_points[ask]
+                            points-= o
+                            pc_adv.append(ask)
+                            print(points)
+                        elif ah== 'no'or'No':
+                            continue
                 
             else:
                 print("That is not in the Advantages List\n\n")
