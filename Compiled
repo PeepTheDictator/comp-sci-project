@@ -80,11 +80,11 @@ diff = 0
 
 while conf != "y":
     select = input("what difficulty would you like to choose?\nVery Easy\nEasy\nMedium\nHard\nVery Hard\n")
-    if "very easy" in select:
+    if select == "very easy":
         mode = 1
         points = 400
         diff = 1
-    if "easy" in select:
+    if select == "easy":
         mode = 2
         points = 350
         diff = 2
@@ -131,7 +131,7 @@ score = 0
 
 #definitions
 pc_adv = []
-advantages={"Altered Time Rate":" Gives an extra turn to attack with. (Cost: 100)",
+advantages={"Altered Time Rate":" Gives an extra turn to attack with. (Cost: 100 per level)",
             "Cat Fall": "Less damage from falls. (Cost: 20)",
             "Chameleon": "You blend in with your surroundings better. (Cost: 10)",
             "Claws": "Strikes with fist deal more damage. (Cost: 20)",
@@ -151,6 +151,16 @@ advantages={"Altered Time Rate":" Gives an extra turn to attack with. (Cost: 100
             "Magic Resistance": "You gain resistance to damage (Cost: 2 per lvl)",
             "Mind Control": "What it sounds like (Cost: 50 points)",
             "Mind Sheild": "You have a resistance to psychic effects (Cost: 4 per lvl)"}
+atr=0
+cha=0
+dr=0
+dup=0
+ea=0
+el=0
+hk=0
+mr=0
+ms=0
+lvl=0
 #points per adv
 adv_points= {"Altered Time Rate": 100,
                 "Cat Fall": 20,
@@ -183,7 +193,7 @@ while conf != "y":
     print("Current Points:",points)
     print("Statscore status",score)
     print("Owned adv", pc_adv)
-    print("Stats\nAdvantages (adv)\n")
+    print("Leveled Advantages:\nAltered Time Rate:",atr,"\n")
 
     select = input("what would you like to edit?\n")
     if select == "stat" or select == "stats":
@@ -298,26 +308,29 @@ while conf != "y":
                 #vairify
                 ah= input("Are you sure you want to use this? \n")
                 if ah == "yes"or"Yes":
-                    if ask == "Damage Resistance" or "Altered Time Rate" or "Magic Resistance" or "Extra Attack" or "Extra Life" or "Chameleon" or "Duplication" or "Mind Sheild" or "Hard to Kill":
-                        print("what level of this would you like to buy? (costs the ammount per level)")
+
+                   if ask == "Altered Time Rate":
+                        lvl = int(input("what level of this would you like to buy? (100 per lvl)\n"))
+                        o =adv_points[ask]
+                        points -= lvl * o
+                        atr + lvl
+                        lvl = 0
+                        
+                elif ah== 'no'or'No':
+                    continue
+                
+                else:
+                    if ask in pc_adv:
+                        print("you cannot buy them same advantage more than once")
+                        break
+                    elif ah== 'no'or'No':
+                        continue
+                    else:
                         o =adv_points[ask]
                         points-= o
                         pc_adv.append(ask)
                         print(points)
-                    elif ah== 'no'or'No':
-                        continue
-                
-                    else:
-                        if ask in pc_adv:
-                            print("you cannot buy them same advantage more than once")
-                            break
-                        else:
-                            o =adv_points[ask]
-                            points-= o
-                            pc_adv.append(ask)
-                            print(points)
-                        elif ah== 'no'or'No':
-                            continue
+                    
                 
             else:
                 print("That is not in the Advantages List\n\n")
