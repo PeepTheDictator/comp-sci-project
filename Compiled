@@ -129,7 +129,7 @@ stat = None
 score = 0
 
 
-#definitions
+#definitions - Moses and Cooper
 pc_adv = []
 advantages={"Altered Time Rate":" Gives an extra turn to attack with. (Cost: 100 per level)",
             "Cat Fall": "Less damage from falls. (Cost: 20)",
@@ -161,7 +161,7 @@ hk=0
 mr=0
 ms=0
 lvl=0
-#points per adv
+#points per adv - Moses and Cooper
 adv_points= {"Altered Time Rate": 100,
                 "Cat Fall": 20,
                 "Chameleon": 10,
@@ -174,7 +174,7 @@ adv_points= {"Altered Time Rate": 100,
                 "ExtraLife": 25,
                 "Flight": 40,
                 "Gunslinger": 25,
-                "Hard to kill": 2,
+                "Hard to Kill": 2,
                 "Healing": 30,
                 "Injury Tolerance": 5,
                 "Homogeneous": 20,
@@ -182,8 +182,19 @@ adv_points= {"Altered Time Rate": 100,
                 "Magic Resistance": 2,
                 "Mind Control": 50,
                 "Mind Sheild": 4}
+#assigning advantages to variables for function -Cameron 12/13
+adv_var = {"Altered Time Rate":atr,
+           "Chameleon":cha,
+           "Damage Resistance":dr,
+           "Duplication":dup,
+           "Extra Attack":ea,
+           "Extra Life":el,
+           "Hard to Kill":hk,
+           "Magic Resistance":mr,
+           "Mind Shield":ms}
+#leveled adv fuction - Cameron
 
-
+#small menu - cameron
 while conf != "y":
 
     print("STR:",pc_str,"[",pc_str * 10 - 100,"]           HP:",pc_hp,"[",pc_hp * 2 - 20,"]")
@@ -194,7 +205,7 @@ while conf != "y":
     print("Statscore status",score)
     print("Owned adv", pc_adv)
     print("Leveled Advantages:\nAltered Time Rate:",atr,"\n")
-
+    #upgrading stats - Cameron
     select = input("what would you like to edit?\n")
     if select == "stat" or select == "stats":
         stat = input("please insert a stat to upgrade, or optimize your skill to stat ratio with (auto)\n")
@@ -286,9 +297,9 @@ while conf != "y":
                         points -= inc * 3
                 select == None
 
-    #testing for selection
+    #testing for selection - Moses
     if "adv" in select:
-    #print out list
+    #print out list - Moses
         print(advantages.keys())
         print("")
                  
@@ -309,11 +320,11 @@ while conf != "y":
                 ah= input("Are you sure you want to use this? \n")
                 if ah == "yes"or"Yes":
 
-                   if ask == "Altered Time Rate":
-                        lvl = int(input("what level of this would you like to buy? (100 per lvl)\n"))
+                   if ask in adv_var:
                         o =adv_points[ask]
+                        lvl = int(input("what level of this would you like to buy?", adv_points[ask], " per lvl \n"))
                         points -= lvl * o
-                        atr + lvl
+                        adv_var[ask] += lvl
                         lvl = 0
                         
                 elif ah== 'no'or'No':
