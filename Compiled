@@ -1,3 +1,6 @@
+import random
+import csv
+
 conf = "n"
 select = ""
 mode = 1
@@ -15,7 +18,7 @@ while conf == "n":
         settings = input(" ")
         mode = 1
         god = 0
- 
+
         #difficulty selections
         
         if "god" in settings:
@@ -25,14 +28,16 @@ while conf == "n":
         if "dev" in settings:
             print("this will grant you an unlimited amount of points, this is intended for the testing of extremes, beware, there may be bugs and/or crashes if abused")
             dev = input("Please input \non(1) \noff(0) \n")
-            
+        if "back" in settings:
+            menu = "yeet"
+            break
  
  
  
     #special settings menu
     while "extras" in menu:
         print("Welcome, here you can choose some different modes to add spice to the game, please choose one of the following")
-        special = input("\nGod Slayer: \nLast Stand: \nDemi God \nRealism \nBack \n")
+        special = input("\nGod Slayer: \nLast Stand: \nDemi God \nRealism \nBack\n")
         gs = 0
         ls = 0
         dg = 0
@@ -150,17 +155,10 @@ advantages={"Altered Time Rate":" Gives an extra turn to attack with. (Cost: 100
             "Invisibility": "You gain a +15 to stealth checks",
             "Magic Resistance": "You gain resistance to damage (Cost: 2 per lvl)",
             "Mind Control": "What it sounds like (Cost: 50 points)",
-            "Mind Sheild": "You have a resistance to psychic effects (Cost: 4 per lvl)"}
-atr=0
-cha=0
-dr=0
-dup=0
-ea=0
-el=0
-hk=0
-mr=0
-ms=0
-lvl=0
+            "Mind Sheild": "You have a resistance to psychic effects (Cost: 4 per lvl)",
+            "Unkillable": "You can go down to -10x your health, levels give indestructable bones, and resurection(after time)",
+            "Regeneration":"you regenerate health, slow or fast"}
+
 #points per adv - Moses and Cooper
 adv_points= {"Altered Time Rate": 100,
                 "Cat Fall": 20,
@@ -181,22 +179,69 @@ adv_points= {"Altered Time Rate": 100,
                 "Invisibility": 13,
                 "Magic Resistance": 2,
                 "Mind Control": 50,
-                "Mind Sheild": 4}
+                "Mind Sheild": 4,
+                "Unkillable": 50,
+                "Regeneration":50}
 #assigning advantages to variables for function -Cameron 12/13
-adv_var = {"Altered Time Rate":atr,
-           "Chameleon":cha,
-           "Damage Resistance":dr,
-           "Duplication":dup,
-           "Extra Attack":ea,
-           "Extra Life":el,
-           "Hard to Kill":hk,
-           "Magic Resistance":mr,
-           "Mind Shield":ms}
+adv_var = {"Altered Time Rate":0,
+           "Chameleon":0,
+           "Damage Resistance":0,
+           "Duplication":0,
+           "Extra Attack":0,
+           "Extra Life":0,
+           "Hard to Kill":0,
+           "Magic Resistance":0,
+           "Mind Shield":0,
+           "Unkillable": 0,
+           "Regeneration":0}
 #leveled adv fuction - Cameron
 
-#small menu - cameron
-while conf != "y":
+#equipment variables------------
+pc_equip = None
+#gun damages---------------
+def pistol():
+    di=random.randint(1,6)
+    pistol=(di-3)*.5
+    if pistol <1:
+        pistol=1.0
+    print(pistol)
 
+def ar():
+    di=random.randint(1,6)
+    AR= (di+2)*5
+    print(AR)
+
+def shotgun():
+    di=random.randint(1,6)
+    di2=random.randint(1,6)
+    shotgun= (di+di2)-1
+    print(shotgun)
+
+def sniper():
+    di=random.randint(1,6)
+    di1=random.randint(1,6)
+    di2=random.randint(1,6)
+    di3=random.randint(1,6)
+    di4=random.randint(1,6)
+    di5=random.randint(1,6)
+    dix=di+di1+di2+di3+di4+di5
+    sniper= (dix*2)*1.5
+    print(sniper)
+
+def buy(gun):
+    input("Are you sure you would like this?\nYou can only have one\n")
+    if "yes":
+        pc_equip = gun
+        print(pc_equip)
+#idk actually
+pistol=()
+ar=()
+shotgun=()
+sniper=()
+#small menu - cameron
+conf = "n"
+while conf == "n":
+    print("\n\n\n\n\n\n\n")
     print("STR:",pc_str,"[",pc_str * 10 - 100,"]           HP:",pc_hp,"[",pc_hp * 2 - 20,"]")
     print("DEX:",pc_dex,"[",pc_dex * 20 - 200,"]           WILL:",pc_will,"[",pc_will * 5 - 50,"]")
     print("INT:",pc_int,"[",pc_int * 10 - 100,"]           PER:",pc_per,"[",pc_per * 5 - 50,"]")
@@ -204,9 +249,19 @@ while conf != "y":
     print("Current Points:",points)
     print("Statscore status",score)
     print("Owned adv", pc_adv)
-    print("Leveled Advantages:\nAltered Time Rate:",atr,"\n")
+    print("Leveled Advantages:\nAltered Time Rate:",adv_var["Altered Time Rate"])
+    print("Chameleon:",adv_var["Chameleon"])
+    print("Damage Resistance:",adv_var["Damage Resistance"])
+    print("Duplication:",adv_var["Duplication"])
+    print("Extra Attack:",adv_var["Extra Attack"])
+    print("Extra Life:",adv_var["Extra Life"])
+    print("Hard to Kill:",adv_var["Hard to Kill"])
+    print("Magic Resistance:",adv_var["Magic Resistance"])
+    print("Mind Shield:",adv_var["Mind Shield"])
+    print("Unkillable:",adv_var["Unkillable"])
+    print("Regeneration:",adv_var["Regeneration"])
     #upgrading stats - Cameron
-    select = input("what would you like to edit?\n")
+    select = input("\n\n\nwhat would you like to do/edit?\nAdvantages(adv)\nStats\nEquipment(equip)\nPlay\n")
     if select == "stat" or select == "stats":
         stat = input("please insert a stat to upgrade, or optimize your skill to stat ratio with (auto)\n")
         inc = int(input("what would you like to increase this stat by?\n"))
@@ -322,7 +377,8 @@ while conf != "y":
 
                    if ask in adv_var:
                         o =adv_points[ask]
-                        lvl = int(input("what level of this would you like to buy?", adv_points[ask], " per lvl \n"))
+                        print("what level of this would you like to buy?", o , " per lvl")
+                        lvl = int(input())
                         points -= lvl * o
                         adv_var[ask] += lvl
                         lvl = 0
@@ -341,9 +397,32 @@ while conf != "y":
                         points-= o
                         pc_adv.append(ask)
                         print(points)
-                    
-                
             else:
                 print("That is not in the Advantages List\n\n")
-           
-           
+
+    if "equip" in select:
+
+        gun=input("If you would like to buy this, please type one of the following:\nPistol(one handed)\nAr(two handed)\nShotgun(two handed)\nSniper(two handed)\n")
+        buy(gun)
+
+    if "play" in select:
+        conf == "y"
+        break
+
+print("""\n\n\n\n\n\n\n
+Welcome to G.U.R.P.S.S. (Generic Universal Role Play System Simulator), now that you have created your character and chosen ya' stuff. Lets Get Started!
+
+"You have been called on the hunt of a mystic gem, that's being used in the wrong hands, a bandit captain with a now very inflated ego has been abusing it's power in order to gain
+currencey and following, we the (insert cool angency name here) are sending you in to take him out, you, of course, will be hansomly rewarded for your accomplishment"
+
+that's what you were told.
+to go in
+    to take out the bad guy
+        not so bad right?
+
+wrong.
+you've been trapped in a time loop for what you estimate to be about a week, and things are starting to get wierd. You've gained some weird sort of powers, and you have started to 
+get better at some things, but the force is overwhelming.
+Anyways, we gotta go in again, or I just end up back at the start anyways.
+    """)
+
