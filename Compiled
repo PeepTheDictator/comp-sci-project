@@ -373,7 +373,7 @@ while conf == "n":
                 print(ask,":",p)
                 #vairify
                 ah= input("Are you sure you want to use this? \n")
-                if ah == "yes"or"Yes":
+                if ah == "yes"or"Yes"or"y"or"Y":
 
                    if ask in adv_var:
                         o =adv_points[ask]
