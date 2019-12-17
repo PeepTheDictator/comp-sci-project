@@ -1,0 +1,177 @@
+import random
+#-----------------------------Moving Variables----------------------------
+Yaxis = {"up" : 15 , "down" : -15 }
+
+Xaxis = {"right" : 15 , "left" : -15}
+pc_x= 0
+pc_y= -15
+pc_pos ="x:",pc_x,"y:",pc_y
+sett = "yeet"
+time = 0
+compass = """\n\n\n\n\n\n
+            n
+        ne  |   nw
+   e--------+--------w
+        se  |   sw
+            s           """
+
+list = ["pc",'e1','e2','e3','bbeg','end']
+turn = list[time]
+win = "n"
+#---------------------Start of Battle variables------------------------------
+
+#insert ai stats & attacks-----------------------------------------
+example_dex = random.randint(5, 20)
+example_ht = random.randint(5, 20)
+
+e1 = {"ai_dex1": 12, "ai_ht1": 9, "ai_str":12,"ai_int":8,'ai_will':10,"ai_fp":14,"ai_per":9}
+add = random.randrange(1,5)
+e_hp = {"e1":17,"e2":17,"e3":17}                                                             #movement here
+
+pistol_actions = {"whip":random.randrange(1,4),"shoot":random.randrange(2,18)+1,"run":5,"push":-5}
+rifle_actions = {"stock":random.randrange(1,4),"shoot(busrt)":random.randrange(3,18)*3,"shoot(one)":random.randrange(3,18),"move":5,"push":-5}
+
+bbeg = {"bbeg_dex1": 10, "bbeg_ht1": 14, "bbeg_str":23,"bbeg_int":10,'bbeg_will':14,"bbeg_fp":18,"bbeg_per":12}
+bbeg_hp = 40
+bbeg_act = {"Magic Blast": random.randrange(12,24)+6,"Punch":random.randrange(2,12)+2,}
+#end of stats and attacks----------------------------
+
+def pc_speed(pc_dex, pc_ht):
+    yes = (pc_dex + pc_ht)/4
+    return yes
+def speed(dex, ht):
+    yes = (dex + ht)/4
+    return yes
+#decrease hp
+def dec_hp(inc, dec):
+    return inc - dec
+#--------------map askii art-------------
+map = print("""
+  15   ---------------------------------
+  10   |      __________________       |
+  5    |     |_(stage)__BBEG______|    |
+  0    |                               |
+  -5   |      _e_             *  _e_   |
+  -10  |              _e_              |
+  -15  |     *         †               |
+        ---------------------------------
+""")
+#test
+#--------------testing pc stats------------------
+pc_str = 10
+pc_dex = 10
+pc_ht = 10
+pc_hp = pc_str
+
+#----------Variables--------------
+minus = 0
+ht_loss = 0
+lol = 0
+enemy_stat = 0
+chance = 0
+chance_dec = 0
+stud = 0
+basic = random.randrange(1,6) + random.randrange(1,6) + random.randrange(1,6)
+#attacking enemy var
+damage = 1
+special_attack = 2
+pc_dmg = pc_str - 9
+pc_dice = random.randrange(1,6)
+target_list = {"e1":e_hp["e1"],"e2":e_hp["e2"],"e3":e_hp["e3"],"BBEG":bbeg_hp}
+#possible pc attacks--------------------------------
+h_melee = {"\nslash":pc_dice*1.5,"stab":pc_dice-2*2}
+#attacking def------------------------------
+mc = None
+def attack_pc():
+    mc = None
+    dodge = random.randrange(1,6) + random.randrange(1,6) + random.randrange(1,6) + 10
+    basic = random.randrange(1,6) + random.randrange(1,6) + random.randrange(1,6) 
+    attack = input("what will your attack be?\nBack\nMelee\nShoot\nMagic\n")
+    if attack == "melee":
+        for key in h_melee:
+            print(key)
+        mc = input("what melee attack would you like to use?\nOr type back to leave")
+        if mc == "back":
+            print("\n\n\n\n")
+        else:
+            if mc in h_melee:
+                damage == h_melee[mc]
+                target = input("who are you going to attack?")
+                if target in target_list:
+                    #rolling to see if you hit
+                    if basic <= 16:
+                        #rolling to see if they dodge it
+                        if dodge < 9:
+                            print("You attempt to ",attack ," the enemy... \nbut they manage to dodge!")
+                        else:
+                            print("You attempt to", attack, " the enemy... \nand you hit!\n you do ",h_melee(attack)," damage!")
+                            if target 
+                            e_hp[target] -= damage
+
+#attempt at the turns and a small menu to choose what you do during the turn
+while win == "n":
+    turn = list[time]
+    print(turn)
+    while time > 0:
+        #enemies will move here
+        time+=1
+        print(time)
+        if turn == "end":
+            time = 0
+            break
+
+    while "pc" in turn:
+        action = None
+        action = input("what are you going to do?\nYou have an 1 action & 5 ft of movement per turn\nAttack\nMove\nDefensive Manuvers\nInteract\n")
+        if action == "attack":
+            attack = None
+            attack_pc()
+                            
+
+        if action == "move":
+            print(compass)
+            move = input("where are you going to move to?\nNorth(n)\nSouth(s)\nEast(e)\nWest(w)\ncombination of any two touching (ne,se,nw,sw)\nOr type none if you don't wanna move\n")
+            if move == "back":
+                sett == "y"
+                continue
+            if move == "none":
+                print("you don't move")
+                time+=1
+                break
+            if move in ["n","s","e","w","ne","nw","se""sw","none"]:
+                space = int(input("how much?\n"))
+                if space > (pc_dex+pc_ht)/4:
+                    print("you can only move", (pc_dex+pc_ht)/4," ft in one turn (one second)")
+                if space > space:
+                    print("you cannot move more than your speed\n your speed is",)
+                if move == "n":
+                    pc_y += space
+                if move == "s":
+                    pc_y -= space
+                if move == "e":
+                    pc_x -= space
+                if move == "w":
+                    pc_x += space
+                if move == "ne":
+                    pc_x -= space
+                    pc_y += space
+                if move == "se":
+                    pc_x -= space
+                    pc_y -= space
+                if move == "nw":
+                    pc_x += space
+                    pc_y += space
+                if move == "sw":
+                    pc_x += space
+                    pc_y -= space
+                else:
+                    print("invalid input")
+                print(pc_x," is your x axis")
+                print(pc_y," is your y axis")
+                time+=1
+                break
+            else:
+                print("invalid input")
+                continue
+        
+
