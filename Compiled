@@ -493,13 +493,6 @@ map = print("""
 extra = adv_var["Extra Attack"]
 moved = 0
 #----------Variables--------------Daniel
-minus = 0
-ht_loss = 0
-lol = 0
-enemy_stat = 0
-chance = 0
-chance_dec = 0
-stud = 0
 basic = random.randrange(1,6) + random.randrange(1,6) + random.randrange(1,6)
 #attacking enemy var
 damage = 0
@@ -867,7 +860,10 @@ while win == "n":
         else:
             print("\n")
     print(time)
-            
+
+
+
+
+
 
     
-
