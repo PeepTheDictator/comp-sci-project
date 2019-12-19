@@ -402,7 +402,7 @@ while conf == "n":
 
     if "equip" in select:
 
-        gun=input("If you would like to buy this, please type one of the following:\nPistol(one handed)\nAr(two handed)\nShotgun(two handed)\nSniper(two handed)\n")
+        gun=input("If you would like to buy this, please type one of the following:\nsmall wand(one handed)\nlarge wand(two handed)\nscatter wand(two handed)\nlong wand(two handed)\n")
         buy(gun)
 
     if "play" in select:
@@ -507,22 +507,22 @@ if "pistol" in gun:
     h_melee = {"whip":pc_dice+2,"point blank":random.randrange(3,18)+3}
 
 
-if "pistol" in gun:
+if "small wand" in gun:
     p_re=12
-if "ar" in gun:
+if "large wand" in gun:
     p_re = 31
-if "shotgun" in gun:
+if "scatter wand" in gun:
     p_re = 9
-if "sniper" in gun:
+if "long wand" in gun:
     p_re = 5
     
 p_fired = 0
 
 h_range = {}
-if "pistol" in gun:
+if "samll wand" in gun:
     h_range = {"fake":random.randrange(3,18),"vitals":random.randrange(3,18)*3,"normal":random.randrange(3,18)} 
-if "ar" in gun:
-    h_range = {"burst":random.randrange(3,18)*random.randrange(1,3),"shoot":random.randrange(3,18),"unload":random.rnadrange(3,18)*random.randrange(1,15)}
+if "small wand" in gun:
+    h_range = {"burst":random.randrange(3,18)*random.randrange(1,3),"fire":random.randrange(3,18),"unload":random.randrange(3,18)*random.randrange(1,15)}
 #attacking def------------------------------Daniel
 mc = None
 def attack_pc(pc_dmg,pc_dice,pc_eco,elist,p_fired,p_re,e1_hp,e2_hp,e3_hp,bbeg_hp,target):
@@ -579,7 +579,7 @@ def attack_pc(pc_dmg,pc_dice,pc_eco,elist,p_fired,p_re,e1_hp,e2_hp,e3_hp,bbeg_hp
                                                 print("You have slain (e2)")
                                                 elist.remove["e2"]
                                         else:
-                                            print("this target is dead!")
+                                            print("this target is unconciouss!")
                                     if target == "e3":
                                         if target in elist:
                                             e3_hp - damage
@@ -680,35 +680,9 @@ while win == "n":
             if pc_eco > 0:
                 print("you have ",pc_eco," attacks left")
                 attack_pc(pc_dmg,pc_dice,pc_eco,elist,p_fired,p_re,e1_hp,e2_hp,e3_hp,bbeg_hp,target)
-                if target == "e1":
-                    if target in elist: 
-                        e1_hp - damage
-                        if e1_hp < 0:
-                            print("You have slain (e1)")
-                            elist.remove["e1"]
-                        else:
-                            print("this target is dead!")
-                            if target == "e2":
-                                if target in elist:
-                                    if e2_hp < 0:
-                                        print("You have slain (e2)")
-                                        elist.remove["e2"]
-                                    else:
-                                        print("this target is dead!")
-                                if target == "e3":
-                                    if target in elist:            
-                                        if e3_hp < 0:
-                                            print("You have slain (e3)")
-                                            elist.remove["e3"]
-                                    else:
-                                        print("this target is dead!")
-                                if target == "bbeg":
-                                    if target in elist:            
-                                        if e3_hp < 0:
-                                            print("You have slain (e3)")
-                                            elist.remove["e3"]
-                                    else:
-                                        print("this target is dead!")
+                hidden_test = input("")
+                if hidden_test == "win":
+                    win = "y"
                                 
                 pc_eco -= 1
             else:
@@ -796,16 +770,16 @@ while win == "n":
                     if basic <= 13:
                         if dodge >= (pc_dex+pc_ht)/4 + 3:
                             pc_hp -= rifle_actions["unload"]
-                            print("In retaliation of his captain's pain,",turn," holds the trigger in your direction\n'AAAAAAAAAAAAAAHHHHHHHHHHHHH'\n   Screams the bandit\nAs the bullets lay into you\n")
+                            print("In retaliation of his captain's pain,",turn," holds the beam in your direction\n'AAAAAAAAAAAAAAHHHHHHHHHHHHH'\n   Screams the bandit\nAs the projectiles lay into you\n")
                     else:
-                        print("In retaliation of his captain's pain,",turn," holds the trigger in your direction\n'AAAAAAAAAAAAAAHHHHHHHHHHHHH'\n   Screams the bandit\nAs all of the shots fly over your head\n")
+                        print("In retaliation of his captain's pain,",turn," holds the beam in your direction\n'AAAAAAAAAAAAAAHHHHHHHHHHHHH'\n   Screams the bandit\nAs all of the projectiles fly over your head\n")
                         time += 1
                         continue
             else:
                 damage = rifle_actions["burst"]
                 if basic <= 14: 
                     if dodge <= (pc_dex+pc_ht)/4 + 3:
-                        print("e1 manages to clip you with a burst from his rifle!\n")
+                        print("e1 manages to clip you with a burst from his wand!\n")
                         pc_hp -= damage
                     else:
                         print("e1 takes his shot at you...\nBut you manage to dodge it!")
@@ -825,7 +799,7 @@ while win == "n":
         print("it's ",list[time],"'s turn!\n")
         if basic <= 14: 
             if dodge >= (pc_dex+pc_ht)/4 + 3:
-                print(list[time],"manages to clip you with a burst from his rifle!")
+                print(list[time],"manages to clip you with a burst from his wand!")
                 pc_hp -= damage
                 time += 1
             else:
@@ -861,9 +835,9 @@ while win == "n":
             print("\n")
     print(time)
 
+print("Congrats, you won.")
 
 
 
 
 
-    
