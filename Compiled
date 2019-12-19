@@ -1,6 +1,6 @@
 import random
 import csv
-
+#Menu-------------------Cameron
 conf = "n"
 select = ""
 mode = 1
@@ -10,7 +10,7 @@ while conf == "n":
     print("\n\n\n\nwelcome to the menu, please choose one of the following")
     menu = input("settings \nextras \nplay \nhelp \n")
  
-    #settings menu
+    #settings menu--Cameron
     while "settings" in menu:
         print("Welcome to settings, Please choose on of the follwing, or type back\n")
         print("God Mode: on---off")
@@ -19,7 +19,7 @@ while conf == "n":
         mode = 1
         god = 0
 
-        #difficulty selections
+        #difficulty selections-Daniel
         
         if "god" in settings:
             print("god mode will make you unkillable, meaning you have an infinite (almost) amount of HP")
@@ -34,9 +34,9 @@ while conf == "n":
  
  
  
-    #special settings menu
+    #special settings menu--Cooper
     while "extras" in menu:
-        print("Welcome, here you can choose some different modes to add spice to the game, please choose one of the following")
+        print("Welcome, here you can choose some different modes to add spice to the game, please choose one of the following\nWarning, unimplimented")
         special = input("\nGod Slayer: \nLast Stand: \nDemi God \nRealism \nBack\n")
         gs = 0
         ls = 0
@@ -67,7 +67,7 @@ while conf == "n":
             continue
  
  
-    #basically just a help tab
+    #basically just a help tab-Cooper
     if menu == "help":
         print("Hello and welcome to Battle sim, You will play by typing a specific command into the console to preform the corresponding action")
         print("You will be taking the role of an adventurer, who will be taking on a variety of monsters there will be a variety of diffrent situations that you may encounter. you will input any of the displayed options in order to select your action and continue ")
@@ -196,7 +196,7 @@ adv_var = {"Altered Time Rate":0,
            "Regeneration":0}
 #leveled adv fuction - Cameron
 
-#equipment variables------------
+#equipment variables------------Cooper & Moses
 pc_equip = None
 #gun damages---------------
 def pistol():
@@ -233,7 +233,7 @@ def buy(gun):
     if "yes":
         pc_equip = gun
         print(pc_equip)
-#idk actually
+#idk actually-Cooper
 pistol=()
 ar=()
 shotgun=()
@@ -408,7 +408,7 @@ while conf == "n":
     if "play" in select:
         conf == "y"
         break
-
+#intro
 print("""\n\n\n\n\n\n\n
 Welcome to G.U.R.P.S.S. (Generic Universal Role Play System Simulator), now that you have created your character and chosen ya' stuff. Lets Get Started!
 
@@ -425,4 +425,449 @@ you've been trapped in a time loop for what you estimate to be about a week, and
 get better at some things, but the force is overwhelming.
 Anyways, we gotta go in again, or I just end up back at the start anyways.
     """)
+
+import random
+#-----------------------------Moving Variables----------------------------
+Yaxis = {"up" : 15 , "down" : -15 }
+
+Xaxis = {"right" : 15 , "left" : -15}
+pc_x= 0
+pc_y= -15
+pc_pos ="x:",pc_x,"y:",pc_y
+sett = "yeet"
+time = 0
+compass = """\n\n\n\n\n\n
+            n
+        ne  |   nw
+   e--------+--------w
+        se  |   sw
+            s           """
+elist = ['e1','e2','e3','bbeg']
+list = ["pc",'e1','e2','e3','bbeg','end']
+turn = list[time]
+win = "n"
+target = None
+#---------------------Start of Battle variables------------------------------Daniel
+
+#insert ai stats & attacks-----------------------------------------Daniel
+example_dex = random.randint(5, 20)
+example_ht = random.randint(5, 20)
+
+e1 = {"ai_dex1": 12, "ai_ht1": 9, "ai_str":12,"ai_int":8,'ai_will':10,"ai_fp":14,"ai_per":9}
+add = random.randrange(1,5)
+e1_hp = 34
+e2_hp = 34
+e3_hp = 34                                                     #movement here-me
+
+pistol_actions = {"whip":random.randrange(1,4),"shoot":random.randrange(2,18)+1,"run":5,"push":-5}
+rifle_actions = {"stock":random.randrange(1,4),"burst":random.randrange(3,18)*3,"shoot":random.randrange(3,18),"move":5,"push":-5}
+
+bbeg = {"bbeg_dex1": 10, "bbeg_ht1": 14, "bbeg_str":23,"bbeg_int":10,'bbeg_will':14,"bbeg_fp":18,"bbeg_per":12}
+bbeg_hp = 240
+bbeg_act = {"Magic Blast": random.randrange(12,24)+6,"Punch":random.randrange(2,12)+2,}
+#end of stats and attacks----------------------------
+
+def pc_speed(pc_dex, pc_ht):
+    yes = (pc_dex + pc_ht)/4
+    return yes
+def speed(dex, ht):
+    yes = (dex + ht)/4
+    return yes
+#decrease hp
+def dec_hp(inc, dec):
+    return inc - dec
+#--------------map askii art-------------
+map = print("""
+  15   ---------------------------------
+  10   |      __________________       |
+  5    |     |_(stage)__BBEG______|    |
+  0    |                               |
+  -5   |      _e_             *  _e_   |
+  -10  |              _e_              |
+  -15  |     *         †               |
+        ---------------------------------
+""")
+#test
+#--------------testing pc stats------------------Cameron
+
+extra = adv_var["Extra Attack"]
+moved = 0
+#----------Variables--------------Daniel
+minus = 0
+ht_loss = 0
+lol = 0
+enemy_stat = 0
+chance = 0
+chance_dec = 0
+stud = 0
+basic = random.randrange(1,6) + random.randrange(1,6) + random.randrange(1,6)
+#attacking enemy var
+damage = 0
+special_attack = 2
+pc_dmg = pc_str - 8
+pc_dice = random.randrange(1,6)*pc_dmg
+target_list = ["e1","e2","e3","BBEG"]
+
+#possible pc attacks--------------------------------Cameron
+h_melee = {"\nslash":pc_dice+2*1.5,"stab":pc_dice*2}
+if "pistol" in gun:
+    h_melee = {"whip":pc_dice+2,"point blank":random.randrange(3,18)+3}
+
+
+if "pistol" in gun:
+    p_re=12
+if "ar" in gun:
+    p_re = 31
+if "shotgun" in gun:
+    p_re = 9
+if "sniper" in gun:
+    p_re = 5
+    
+p_fired = 0
+
+h_range = {}
+if "pistol" in gun:
+    h_range = {"fake":random.randrange(3,18),"vitals":random.randrange(3,18)*3,"normal":random.randrange(3,18)} 
+if "ar" in gun:
+    h_range = {"burst":random.randrange(3,18)*random.randrange(1,3),"shoot":random.randrange(3,18),"unload":random.rnadrange(3,18)*random.randrange(1,15)}
+#attacking def------------------------------Daniel
+mc = None
+def attack_pc(pc_dmg,pc_dice,pc_eco,elist,p_fired,p_re,e1_hp,e2_hp,e3_hp,bbeg_hp,target):
+    argue = "y"
+    mc = None
+    dodge = random.randrange(1,6) + random.randrange(1,6) + random.randrange(1,6)
+    basic = random.randrange(1,6) + random.randrange(1,6) + random.randrange(1,6) 
+    if pc_eco > 0:
+        attack = input("what will your attack be?\nBack\nMelee\nRange\n")
+        if attack == "melee":
+            for key in h_melee:
+                print(key)
+            mc = input("what melee attack would you like to use?\nOr type back to leave\n")
+            if mc == "point blank":
+                if p_fired >= p_re:
+                    print("you reload... your gun was empty")
+                    p_fired = 0
+                    return 
+                else:
+                    p_fired += 1
+            if mc == "back":
+                print("\n\n\n\n")
+            else:
+                if mc in h_melee:
+                    pc_dice = random.randrange(1,6)*pc_dmg
+                    if pc_dmg <= 0:
+                        pc_dmg = 1
+                        pc_dice = random.randrange(1,6)*pc_dmg
+                    damage = h_melee[mc]
+                    print("who are you going to attack?\n",elist)
+                    target = input("")
+                    if target in elist:
+                        #rolling to see if you hit
+                        if basic <= 16:
+                            #rolling to see if they dodge it
+                            if dodge < 9:
+                                print("You attempt to ",mc ," the enemy... \nbut they manage to dodge!")
+                            else:
+                                if pc_eco > 0:
+                                    print("You attempt to", mc, " the enemy... \nand you hit!\n you do ", damage ," damage!")
+                                    if target == elist["e1"]:
+                                        if target in elist:
+                                            e1_hp - damage
+                                            print(e1_hp)
+                                            if e1_hp <= 0:
+                                                print("You have slain (e1)")
+                                                elist.remove[1]
+                                    else:
+                                        print("this target is dead!")
+                                    if target == "e2":
+                                        if target in elist: 
+                                            e2_hp - damage            
+                                            if e2_hp <= 0:
+                                                print("You have slain (e2)")
+                                                elist.remove["e2"]
+                                        else:
+                                            print("this target is dead!")
+                                    if target == "e3":
+                                        if target in elist:
+                                            e3_hp - damage
+                                            if e3_hp <= 0:
+                                                print("You have slain (e3)")
+                                                elist.remove("e3")
+                                        else:
+                                            print("this target is dead!")
+                        else:
+                            print("You attempt to ",attack ," the enemy... \nbut you miss!")
+#range sub attack system-------------------------------------Cameorn
+        if attack == "range":
+            for key in h_range:
+                print(key)
+            rc = input("what ranged attack would you like to use?\nOr type back to leave\n")
+            if rc == "vitals":
+                basic -3
+            if rc == "fake":
+                basic - 4
+                dodge - 2
+            if rc == "one":
+                print()
+            if rc == "back":
+                print("\n\n\n\n")
+            else:
+                if rc in h_range:
+                    damage = h_range[rc]
+                    print("who are you going to attack?\n",elist)
+                    target = input("")
+                    if target in elist:
+                        #rolling to see if you hit
+                        if basic <= 16:
+                            #rolling to see if they dodge it
+                            if dodge <= 8 - 10:
+                                print("You attempt to ",rc ," the enemy... \nbut they manage to dodge!")
+                            else:
+                                if pc_eco > 0:
+                                    print("You attempt to", rc, " the enemy... \nand you hit!\n you do ", damage ," damage!")
+                                    if target == elist[1]:
+                                        if target in elist: 
+                                            e1_hp - damage
+                                            if e1_hp < -17:
+                                                print("You have slain (e1)")
+                                                elist.remove("e1")
+                                        else:
+                                            print("this target is dead!")
+                                    if target == "e2":
+                                        if target in elist:
+                                            if e2_hp < -17:
+                                                print("You have slain (e2)")
+                                                elist.remove("e2")
+                                        else:
+                                            print("this target is dead!")
+                                    if target == "e3":
+                                        if target in elist:            
+                                            if e3_hp < -17:
+                                                print("You have slain (e3)")
+                                                elist.remove("e3")
+                                        else:
+                                            print("this target is dead!")
+                                    if target == "bbeg":
+                                        if target in elist:            
+                                            if e3_hp < -200:
+                                                print("You have slain (e3)")
+                                                elist.remove("e3")
+                                        else:
+                                            print("this target is dead!")
+                        else:
+                            print("You attempt to ",attack ," the enemy... \nbut you miss!")
+                    else:
+                        print("the person you are trying to attack is either dead, or dosen't exist")
+                        
+
+#enemy attacking def---------------------------Cooper & Moses
+
+time = 0
+pc_eco = 1
+if extra > 0:
+    pc_eco += extra
+e1_anger = 0
+e1_threshold = random.randrange(2,5)
+list = ["pc",'e1','e2',"e3",'bbeg','end']
+elist = ['e1','e2','e3','bbeg']
+#attempt at the turns and a small menu to choose what you do during the turn
+while win == "n":
+    turn = list[time]
+    list = ["pc",'e1','e2',"e3",'bbeg','end']
+    dodge = random.randrange(1,6) + random.randrange(1,6) + random.randrange(1,6)
+    basic = random.randrange(1,6) + random.randrange(1,6) + random.randrange(1,6)
+#pc turn
+    while "pc" in turn:
+        dodge = random.randrange(1,6) + random.randrange(1,6) + random.randrange(1,6)
+        basic = random.randrange(1,6) + random.randrange(1,6) + random.randrange(1,6)
+        action = None
+        action = input("\n\nwhat are you going to do?\nYou have an 1 action & 5 ft of movement per turn\nAttack\nMove\nInteract\nEnd\n")
+        if action == "attack":
+            attack = None
+            if pc_eco > 0:
+                print("you have ",pc_eco," attacks left")
+                attack_pc(pc_dmg,pc_dice,pc_eco,elist,p_fired,p_re,e1_hp,e2_hp,e3_hp,bbeg_hp,target)
+                if target == "e1":
+                    if target in elist: 
+                        e1_hp - damage
+                        if e1_hp < 0:
+                            print("You have slain (e1)")
+                            elist.remove["e1"]
+                        else:
+                            print("this target is dead!")
+                            if target == "e2":
+                                if target in elist:
+                                    if e2_hp < 0:
+                                        print("You have slain (e2)")
+                                        elist.remove["e2"]
+                                    else:
+                                        print("this target is dead!")
+                                if target == "e3":
+                                    if target in elist:            
+                                        if e3_hp < 0:
+                                            print("You have slain (e3)")
+                                            elist.remove["e3"]
+                                    else:
+                                        print("this target is dead!")
+                                if target == "bbeg":
+                                    if target in elist:            
+                                        if e3_hp < 0:
+                                            print("You have slain (e3)")
+                                            elist.remove["e3"]
+                                    else:
+                                        print("this target is dead!")
+                                
+                pc_eco -= 1
+            else:
+                print ("you have used all of your attacks for this turn")
+            damage = 0
+
+        if action == "move":
+            if moved >= (pc_dex+pc_ht)/4:
+                print("you can have already used all of your movement for this turn")
+            else:
+                print(compass)
+                move = input("where are you going to move to?\nNorth(n)\nSouth(s)\nEast(e)\nWest(w)\ncombination of any two touching (ne,se,nw,sw)\nOr type none if you don't wanna move\n")
+                if move == "back":
+                    sett == "y"
+                    continue
+                if move == "none":
+                    print("you don't move")
+                    moved + 6
+                    continue
+                if move in ["n","s","e","w","ne","nw","se""sw","none"]:
+                    space = int(input("how much?\n"))
+                    if space > (pc_dex+pc_ht)/4 + moved:
+                        print("you can only move", (pc_dex+pc_ht)/4," ft in one turn (one second)")
+                        continue
+                    else:
+                        if move == "n":
+                            pc_y += space
+                            moved += space
+                            move = None
+                        if move == "s":
+                            pc_y -= space
+                            moved += space
+                            move = None
+                        if move == "e":
+                            pc_x -= space
+                            moved += space
+                            move = None
+                        if move == "w":
+                            pc_x += space
+                            moved + space
+                            move = None
+                        if move == "ne":
+                            pc_x -= space
+                            pc_y += space
+                            moved += space
+                            move = None
+                        if move == "se":
+                            pc_x -= space
+                            pc_y -= space
+                            moved += space
+                            move = None
+                        if move == "nw":
+                            pc_x += space
+                            pc_y += space
+                            moved += space
+                            move = None
+                        if move == "sw":
+                            pc_x += space
+                            pc_y -= space
+                            moved += space
+                            move = None
+                        else:
+                            print("invalid input")
+                        print(pc_x," is your x axis")
+                        print(pc_y," is your y axis")
+                        
+                        break
+                else:
+                    print("invalid input")
+                    continue
+        if action == "end":
+            print("you have ended your turn!\n")
+            time+=1
+            turn = list[time]
+            
+    print(turn)
+    if "e1" in turn:
+        if e1_hp >= -17:
+            print("it's ",list[time],"'s turn!\n")
+            if bbeg_hp <= 10:
+                e1_anger += 1
+                if e1_anger == e1_threshold:
+                    e1_anger = 0
+                    e1_threshold = random.randrange(3,6)
+                    if basic <= 13:
+                        if dodge >= (pc_dex+pc_ht)/4 + 3:
+                            pc_hp -= rifle_actions["unload"]
+                            print("In retaliation of his captain's pain,",turn," holds the trigger in your direction\n'AAAAAAAAAAAAAAHHHHHHHHHHHHH'\n   Screams the bandit\nAs the bullets lay into you\n")
+                    else:
+                        print("In retaliation of his captain's pain,",turn," holds the trigger in your direction\n'AAAAAAAAAAAAAAHHHHHHHHHHHHH'\n   Screams the bandit\nAs all of the shots fly over your head\n")
+                        time += 1
+                        continue
+            else:
+                damage = rifle_actions["burst"]
+                if basic <= 14: 
+                    if dodge <= (pc_dex+pc_ht)/4 + 3:
+                        print("e1 manages to clip you with a burst from his rifle!\n")
+                        pc_hp -= damage
+                    else:
+                        print("e1 takes his shot at you...\nBut you manage to dodge it!")
+                else:
+                    print("e1 takes his shot at you...\nBut Misses!\n")
+            damage = 0
+            time += 1
+            continue
+    elif e1_hp <= -17:
+        print("e1's turn is skipped, because he is dead\n")
+        time += 1
+        damage = 0
+        continue
+
+    elif turn == "e2" or turn == "e3":
+        damage = rifle_actions["burst"]
+        print("it's ",list[time],"'s turn!\n")
+        if basic <= 14: 
+            if dodge >= (pc_dex+pc_ht)/4 + 3:
+                print(list[time],"manages to clip you with a burst from his rifle!")
+                pc_hp -= damage
+                time += 1
+            else:
+                print(list[time],"takes his shot at you...\nBut you manage to dodge it!")
+                time += 1
+        else:
+            print(list[time],"takes his shot at you...\nBut Misses!")
+        time += 1
+        damage = 0
+        continue
+    elif e2_hp <= -17:
+        print(list[time],"'s turn is skipped, because he is dead")
+        time += 1
+        damage = 0
+        continue
+
+    
+
+
+    if turn == "bbeg":
+        print("insert ",list[time],"'s turn here")
+        time += 1
+        continue
+    if turn == "end":
+        time = 0
+        pc_eco = 1 + extra
+        continue
+
+    else:
+        if time > 0:
+            print("no turn is taken for turn ",time)
+        else:
+            print("\n")
+    print(time)
+            
+
+    
 
