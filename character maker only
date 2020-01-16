@@ -1,26 +1,5 @@
 import random
 
-pc_str = 10
-pc_hp = 10
-pc_dex =  10
-pc_will = 10
-pc_int = 10
-pc_per = 10
-pc_ht = 10
-pc_fp = 10
-
-conf = "n"
-
-select = None
-
-choice = None
-inc = None
-
-stat = None
-
-
-
-#definitions - Moses and Cooper
 pc_adv = []
 advantages={"Altered Time Rate":" Gives an extra turn to attack with. (Cost: 100 per level)",
             "Cat Fall": "Less damage from falls. (Cost: 20)",
@@ -81,108 +60,67 @@ adv_var = {"Altered Time Rate":0,
            "Unkillable": 0,
            "Regeneration":0}
 
-stat_cost = {"str":0,
-             "dex":0,
-             "int":0,
-             "ht":0,
-             "hp":0,
+stat_cost = {"str":10,
+             "dex":20,
+             "int":10,
+             "ht":10,
+             "hp":2,
+             "will":5,
+             "per":5,
+             "fp":3}
 
-#equipment variables------------Cooper & Moses
-pc_equip = None
-        
-gun = 0
-#small menu - cameron
-conf = "n"
-def menu(pc_str,pc_dex,pc_int.pc_ht,pc_hp,pc_will,pc_per,pc_fp,points,score):
+
+
+
+def stat_display(pc_str,pc_dex,pc_int.pc_ht,pc_hp,pc_will,pc_per,pc_fp,points):
     print("\n\n\n\n\n\n\n")
-    print("STR:",pc_str,"[",pc_str * 10 - 100,"]           HP:",pc_hp,"[",pc_hp * 2 - 20,"]")
-    print("DEX:",pc_dex,"[",pc_dex * 20 - 200,"]           WILL:",pc_will,"[",pc_will * 5 - 50,"]")
-    print("INT:",pc_int,"[",pc_int * 10 - 100,"]           PER:",pc_per,"[",pc_per * 5 - 50,"]")
-    print("HT:",pc_ht," [",pc_ht * 10 - 100,"]           FP:",pc_fp,"[",pc_fp * 3 - 30,"]")
-    print("Current Points:",points)
-    print("Owned adv", pc_adv)
-    
-    #upgrading stats - Cameron
+    print("STR:",pc_str,"[",pc_str * 10 - 100,"]            HP:",pc_hp,"[",pc_hp * 2 - 20,"]")
+    print("DEX:",pc_dex,"[",pc_dex * 20 - 200,"]            WILL:",pc_will,"[",pc_will * 5 - 50,"]")
+    print("INT:",pc_int,"[",pc_int * 10 - 100,"]            PER:",pc_per,"[",pc_per * 5 - 50,"]")
+    print("HT:",pc_ht," [",pc_ht * 10 - 100,"]            FP:",pc_fp,"[",pc_fp * 3 - 30,"]")
+
+#upgrading stats - Cameron
+def menu_select(select):
     select = input("\n\n\nwhat would you like to do/edit?\nAdvantages(adv)\nStats\nEquipment(equip)\nPlay\n")
+    
 
 def stat_buy(points):
     stat = input("please insert a stat to upgrade, or optimize your skill to stat ratio with (auto)\n")
+    
+    if stat not in stat_cost:
+        print("invalid")
+    else:
+        score = stat_cost(stat)
+        
     change = input("would you like to increase or decrease this stat?")
     if "d" in change:
         c = -1
         buy = int(input("insert an amount of levels to decrease by")
-        if buy >= 0
-            print("you cannot increase or decrease by an amount less than or equal to 0")
-            block = "y"
-        else:
-            c = 1
-            
-    if stat == "str":
-        score = pc_str * 10 - 100
-    if stat == "hp":
-        score = pc_hp * 10 - 20
-    if stat == "dex":
-        score = pc_dex * 20 - 200
-    if stat == "will":
-        score = pc_will * 5 - 50
-    if stat == "int":
-        score = pc_int * 10 - 100
-    if stat == "per":
-        score = pc_per * 5 - 50
-    if stat == "ht":
-        score = pc_ht * 10 - 100
-    if stat == "fp":
-        score = pc_fp * 3 - 30                            
+    if "i" in change:
+        c = 1
+    
+    if buy <= 0
+        print("you cannot increase or decrease by an amount less than or equal to 0")
+        block = "y"
     else:
-        print("invalid")
-        
-        
+        conf = input("are you sure that you want to increase/decrease ",stat," by ",stat_cost[stat]*change," points?"
+        if "y" in conf:
+            points -= stat_cost*c*change
 
 
+#global varables-----------------------------------------
+select = None
+choice = None
+points = None
+pc_str = 10
+pc_hp = 10
+pc_dex =  10
+pc_will = 10
+pc_int = 10
+pc_per = 10
+pc_ht = 10
+pc_fp = 10
 
-
-        print(advantages.keys())
-        print("")
-                 
-        while points>=1:
-            print("points=",points)
-            #ask
-            ask= input("\nWhat advantages do you want?, or type back to leave this menu. \n")
-            if ask == "back":
-                break
-            
-
-            
-                
-            if ask in advantages:
-                p=advantages[ask]
-                print(ask,":",p)
-                #vairify
-                ah= input("Are you sure you want to use this? \n")
-                if ah == "yes"or"Yes"or"y"or"Y":
-
-                   if ask in adv_var:
-                        o =adv_points[ask]
-                        print("what level of this would you like to buy?", o , " per lvl")
-                        lvl = int(input())
-                        points -= lvl * o
-                        adv_var[ask] += lvl
-                        lvl = 0
-                        
-                elif ah== 'no'or'No':
-                    continue
-                
-                else:
-                    if ask in pc_adv:
-                        print("you cannot buy them same advantage more than once")
-                        break
-                    elif ah== 'no'or'No':
-                        continue
-                    else:
-                        o =adv_points[ask]
-                        points-= o
-                        pc_adv.append(ask)
-                        print(points)
-            else:
-                print("That is not in the Advantages List\n\n")
-
+def main(select,choice,points):
+    stat_display(pc_str,pc_dex,pc_int.pc_ht,pc_hp,pc_will,pc_per,pc_fp,points)
+    menu_select(select)
